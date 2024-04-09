@@ -28,8 +28,7 @@ La clase `Main` es la clase principal del programa. Aquí se encuentra el métod
 
 1. Clona el repositorio:
 
-```bash
-git clone https://github.com/tu_usuario/contact-manager.git```
+`git clone https://github.com/tu_usuario/contact-manager.git`
 
 2. Compila el programa:
 
