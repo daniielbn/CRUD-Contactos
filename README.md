@@ -48,4 +48,4 @@ Las contribuciones son bienvenidas. Si deseas contribuir a este proyecto, por fa
 
 ## Licencia
 
-Este proyecto está licenciado bajo la Licencia MIT.
+Este proyecto está licenciado bajo la [Licencia MIT](https://es.wikipedia.org/wiki/Licencia_MIT).
