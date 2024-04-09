@@ -22,7 +22,9 @@ import contacto.Contacto.tipoTelefono;
 /**
  * @author Daniel Brito Negrín
  * @see Contacto
- * @version 1.0 02-04-2024
+ * @see Menu
+ * @see Main
+ * @version 1.0 09-04-2024
  */
 public class CRUD { 
     // <editor-fold defaultstate="collapsed" desc="Atributos"> 

@@ -3,7 +3,9 @@ package contacto;
 /**
  * @author Daniel Brito Negrín
  * @see Contacto
- * @version 1.0 02-04-2024
+ * @see CRUD
+ * @see Menu
+ * @version 1.0 09-04-2024
  */
 public class Main {
     public static void main(String[] args) {

@@ -8,7 +8,9 @@ import java.util.ArrayList;
 /**
  * @author Daniel Brito Negrín
  * @see Main
- * @version 1.0 02-04-2024
+ * @see CRUD
+ * @see Menu
+ * @version 1.0 09-04-2024
  */
 public class Contacto {
     // <editor-fold defaultstate="collapsed" desc="Atributos"> 

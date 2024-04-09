@@ -7,7 +7,9 @@ import java.util.Scanner;
 /**
  * @author Daniel Brito Negrín
  * @see Contacto
- * @version 1.0 02-04-2024
+ * @see CRUD
+ * @see Main
+ * @version 1.0 09-04-2024
  */
 public class Menu {
     // <editor-fold defaultstate="collapsed" desc="Atributos">
