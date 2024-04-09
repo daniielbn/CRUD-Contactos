@@ -1,0 +1,4 @@
+1||Daniel||Brito Negrín||YO||2004-03-12||629481235-MOVIL, 658486367-TRABAJO||danielbritonegrin@gmail.com-PERSONAL, danielbrito@msf.es-TRABAJO
+2||Jose||Garcia Ascanio||JEFE||1967-05-06||680569386-TRABAJO||ascaniogrcx@fedex.com-EMPRESA
+3||Jose||Gutierrez Hernandez||JEFE||1967-06-25||620759468-TRABAJO||josegrezhdez@hotmail.es-PERSONAL, josegrezhdez@msf.es-TRABAJO
+4||Andres||Gomez Blanco||TIO||1990-05-25||922928759-FIJO||andxgomex@gmail.com-TRABAJO
