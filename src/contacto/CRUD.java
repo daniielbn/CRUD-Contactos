@@ -1,5 +1,6 @@
 package contacto;
 
+// <editor-fold defaultstate="collapsed" desc="Librerías">
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -9,11 +10,14 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
+// </editor-fold>
 
+// <editor-fold defaultstate="collapsed" desc="Clases importadas">
 import contacto.Contacto.Correo;
 import contacto.Contacto.Telefono;
 import contacto.Contacto.tipoCorreo;
 import contacto.Contacto.tipoTelefono;
+// </editor-fold>
 
 /**
  * @author Daniel Brito Negrín
@@ -21,47 +25,97 @@ import contacto.Contacto.tipoTelefono;
  * @version 1.0 02-04-2024
  */
 public class CRUD { 
+    // <editor-fold defaultstate="collapsed" desc="Atributos"> 
     private ArrayList<Contacto> listaContactos = new ArrayList<>();
     private ArrayList<Contacto> listaContactosEliminados = new ArrayList<>();
     private String nombreArchivo;
     private int contador;
-
+    // </editor-fold> 
+    
+    // <editor-fold defaultstate="collapsed" desc="Constructores">
     public CRUD() {
         
     }
+    // </editor-fold>
 
+    // <editor-fold defaultstate="collapsed" desc="Getters">
+    /**
+     * Método getter para obtener lista de contactos.
+     * @return Devuelve la lista de contactos.
+     */
     public ArrayList<Contacto> getListaContactos() {
         return this.listaContactos;
     }
 
+    /**
+     * Método getter para obtener lista de contactos eliminados.
+     * @return Devuelve la lista de contactos eliminados.
+     */
     public ArrayList<Contacto> getListaContactosEliminados() {
         return this.listaContactosEliminados;
     }
 
+    /**
+     * Método getter para obtener el nombre del fichero de texto que se está manejando.
+     * @return Devuelve el nombre del fichero de texto.
+     */
     public String getNombreArchivo() {
         return this.nombreArchivo;
     }
     
+    /**
+     * Método getter para obtener el contador de veces que se ha utilizado el CRUD desde que se ha iniciado el programa.
+     * @return Devuelve el número de veces.
+     */
     public int getContador() {
         return this.contador;
     }
+    // </editor-fold>
 
+    // <editor-fold defaultstate="collapsed" desc="Setters">
+    /**
+     * Método setter para establecer una lista de contactos.
+     * @param listaContactos Lista de contactos a establecer.
+     */
     public void setListaContactos(ArrayList<Contacto> listaContactos) {
         this.listaContactos = listaContactos;
     }
 
+    /**
+     * Método setter oara estabelcer una lista de contactos eliminados.
+     * @param listaContactosEliminados Lista de contactos eliminados a establecer.
+     */
     public void setListaContactosEliminados(ArrayList<Contacto> listaContactosEliminados) {
         this.listaContactosEliminados = listaContactosEliminados;
     }
 
+    /**
+     * Método setter para establecer el nombre del fichero de texto que se maneja.
+     * @param nombreArchivo Nombre del fichero de texto a establecer.
+     */
     public void setNombreArchivo(String nombreArchivo) {
         this.nombreArchivo = nombreArchivo;
     }
 
+    /**
+     * Método setter para establecer el contador del programa.
+     * @param contador Número de contador a establecer.
+     */
     public void setContador(int contador) {
         this.contador = contador;
     }
+    // </editor-fold>
 
+    // <editor-fold defaultstate="collapsed" desc="Métodos privados">
+    /**
+     * Método privado que sirve para leer un fichero de texto especifico (lee el fichero que esté como atributo del objeto), y ordenar la información de dentro de este
+     * para establecer la lista de contactos, o lista de contactos eliminados. Hay 7 datos para establecer, "Nombre", "Apellidos", "Notas", "Fecha de nacimiento", "Telefonos" y "Correos".
+     * Cada línea del fichero corresponde a un contacto. Toda esa línea de texto se almacena en un array de String, utilizando el tokenizer "||". Se diferencia si existe uno o varios números de teléfono,
+     * con su respectivo tipo, al igual que los correos, con su respectivo tipo. Por último, según el valor de la lista, se establecerá en la lista de contactos o la lista
+     * de contactos eliminados.
+     * @param lista Este número establece que lista de contactos se va a modificar. Si es igual a 1, se modifica la lista de contactos y si no, se modifica la lista de contactos
+     * eliminados.
+     */
     private void leerFichero(int lista) {
         try {
             BufferedReader br = new BufferedReader(new FileReader(System.getProperty("user.dir") + "\\Contactos\\" + getNombreArchivo()));
@@ -118,6 +172,14 @@ public class CRUD {
         }
     }
 
+    /**
+     * Método privado que escribe un fichero de texto con la información almacenada en la lista de contactos, ya sea la lista de contactos normal o la lista de contactos
+     * eliminadas. Primeramente, comprueba si el fichero de texto (el valor que tenga el atributo "nombreArchivo" del objeto) existe. Si no es así, lo crea. Si es así, lo escribe
+     * nuevamente. Luego, según el parámetro, elije la lista de contactos a escribir. Por último, va recuperando los datos del contacto y los va escribiendo mediante el
+     * "BufferedWriter". Se recorre todo el ArrayList hasta que no haya más elementos.
+     * @param lista Número que corresponde a la lista de contactos que se desea escribir. Si es igual a 1, se escribirá la lista de contactos normales. Si no, se escribirá
+     * la lista de contactos eliminados.
+     */
     private void escribirFichero(int lista) {
         try {
             File file = new File(System.getProperty("user.dir") + "\\Contactos\\" + getNombreArchivo());
@@ -162,6 +224,11 @@ public class CRUD {
         }
     }
 
+    /**
+     * Método privado para añadir un contacto a la lista de contactos. Va pidiendo al usuario todos los datos, y comprobando si son válidos. También da la opción de 
+     * añadir más de un número de teléfono, así como de correos electrónicos. Este método llama al método de escribirFichero(), con la opción solo de la lista de contactos,
+     * ya que es la única que se modifica.
+     */
     private void añadirContacto() {
         ArrayList<Contacto> contactos = getListaContactos();
         ArrayList<Telefono> telefonos = new ArrayList<>();
@@ -237,6 +304,9 @@ public class CRUD {
         escribirFichero(1);
     }
 
+    /**
+     * Método privado que sirve para ver la lista de contactos, además de ofrecer la opción de filtrar por campos.
+     */
     private void verContacto() {
         ArrayList<Contacto> contactos = getListaContactos();
         contactos.trimToSize();
@@ -246,6 +316,10 @@ public class CRUD {
         verFiltrado();
     }
 
+    /**
+     * Método privado para actualizar la información de un contacto. Primeramente, se muestran todos los contactos, para posteriormente decidir cuál es el que se quiere
+     * modificar. Una vez terminada la modificación, se vuelve a escribir la nueva información llamando al método escribirFichero().
+     */
     private void actualizarContacto() {
         ArrayList<Contacto> contactos = getListaContactos();
         for (Contacto contacto : contactos) {
@@ -325,6 +399,12 @@ public class CRUD {
         escribirFichero(1);
     }
 
+    /**
+     * Método privado que permite eliminar algún contacto. Primeramente, muestra los contactos existentes, para luego pedir al usuario cuál es el contacto que se desea
+     * eliminar. Una vez se haya decidio el contacto, se llama al método escribirFichero() para modificar el fichero de texto de "contactosEliminados.txt", que permite 
+     * almacenar la información de todos los contactos eliminados por seguridad. Por último, se modifica la lista de contactos normales, eliminando el contacto que el 
+     * usuario decidió.
+     */
     private void eliminarContacto() {
         ArrayList<Contacto> contactos = getListaContactos();
         ArrayList<Contacto> contactosEliminados = getListaContactosEliminados();
@@ -351,12 +431,18 @@ public class CRUD {
         escribirFichero(1);
     }
 
+    /**
+     * Método privado que sirve para consultar el número total de contactos almacenados.
+     */
     private void consultarTotalContactos() {
         ArrayList<Contacto> contactos = getListaContactos();
         contactos.trimToSize();
         System.out.println("La cantidad de contactos almacenada es de " + contactos.size() + " contactos");
     }
 
+    /**
+     * Método privado que permite ver la lista de los contactos eliminados, almacenados en el fichero de texto "contactosEliminados.txt"
+     */
     private void verContactosEliminados() {
         ArrayList<Contacto> contactosEliminados = getListaContactosEliminados();
         System.out.println("Aquí tiene la lista de los contactos: ");
@@ -373,30 +459,65 @@ public class CRUD {
         }
     }
 
+    /**
+     * Método privado para pedir por teclado al usuario una cadena de texto
+     * @return Cadena de texto introducida por el usuario.
+     */
     private String pedirString() {
         Scanner in = new Scanner(System.in);
         return in.nextLine();
     }
 
+    /**
+     * Método privado para pedir por teclado al usuario un número entero.
+     * @return Número entero introducido por el usuario.
+     */
     private int pedirInt() {
         Scanner in = new Scanner(System.in);
         return in.nextInt();
     }
 
+    /**
+     * Método privado que divida una cadena de texto por el token "-".
+     * @param dato Cadena de texto a dividir.
+     * @return Array de String con las palabras de la cadena ya separadas por el token.
+     */
     private String[] tokenizerGuion(String dato) {
         return dato.split("-");
     }
 
-    private String[] tokenizerComa(String datos) {
-        return datos.split(",");
+    /**
+     * Método privado que divide una cadena de texto por el token ","
+     * @param dato Cadena de texto a dividir.
+     * @return Array de String con las palabras de la cadena ya separadas por el token.
+     */
+    private String[] tokenizerComa(String dato) {
+        return dato.split(",");
     }
 
+    /**
+     * Método privado que sirve para añadir un contacto nuevo a la lista de contactos existente.
+     * @param id Número de identificación del contacto.
+     * @param nombre Nombre del contacto.
+     * @param apellidos Apellidos del contacto.
+     * @param notas Notas del contacto.
+     * @param fechaNacimiento Fecha de nacimiento del contacto.
+     * @param telefonos ArrayList de los teléfonos del contacto.
+     * @param correos ArrayList de los correos electrónicos del contacto.
+     * @param contactos Lista de contactos a la que se va a añadir el contacto.
+     * @return Devuelve la lista de contactos con el nuevo contacto ya añadido.
+     */
     private ArrayList<Contacto> rellenarContacto(int id, String nombre, String apellidos, String notas, LocalDate fechaNacimiento, ArrayList<Telefono> telefonos, ArrayList<Correo> correos, ArrayList<Contacto> contactos) {
         Contacto contacto = new Contacto(id, nombre, apellidos, notas, fechaNacimiento, telefonos, correos);
         contactos.add(contacto);
         return contactos;
     }
 
+    /**
+     * Método privado que sirve para comprobar si un día es válido
+     * @param dia Día a comprobar.
+     * @return Verdadero si el día es válido, falso si no lo es.
+     */
     private boolean comprobarDia(int dia) {
         if (dia < 0 || dia > 31) {
             return false;
@@ -405,6 +526,11 @@ public class CRUD {
         }
     }
 
+    /**
+     * Método privado que sirve para comprobar si un mes es válido.
+     * @param mes Mes a comprobar.
+     * @return Verdadero si el mes es válido, falso si no lo es.
+     */
     private boolean comprobarMes(int mes) {
         if (mes < 0 || mes > 12) {
             return false;
@@ -413,6 +539,11 @@ public class CRUD {
         }
     }
 
+    /**
+     * Método privado que sirve para comprobar si un año es válido.
+     * @param anyo Año a comprobar.
+     * @return Verdadero si es un año válido, falso si no lo es.
+     */
     private boolean comprobarAnyo(int anyo) {
         if (anyo < 1900 || anyo > 2024) {
             return false;
@@ -421,6 +552,11 @@ public class CRUD {
         }
     }
 
+    /**
+     * Método privado que utiliza una expresión regular para comprobar si la cadena de texto es un número de teléfono.
+     * @param numero Número de teléfono a comprobar.
+     * @return Verdadero si es un número válido, falso si no lo es.
+     */
     private boolean comprobarTelefono(String numero) {
         if (!numero.matches("\\d{9}")) {
             return false;
@@ -428,6 +564,11 @@ public class CRUD {
         return true;
     }
     
+    /**
+     * Método privado que utiliza una expresión regular para comprobar si la dirección de correo electrónico es válida.
+     * @param direccion Dirección de correo electrónico a comprobar.
+     * @return Verdadero si es una dirección válida, falso si no lo es.
+     */
     private boolean comprobarCorreo(String direccion) {
         if (!direccion.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
             return false;
@@ -435,6 +576,11 @@ public class CRUD {
         return true;
     }
 
+    /**
+     * Método privado que comprueba si el tipo del teléfono es válido.
+     * @param tipoTelefono Tipo de teléfono a comprobar.
+     * @return Verdadero si es un tipo válido, falso si no lo es.
+     */
     private boolean comprobaTipoTelefono(String tipoTelefono) {
         if(tipoTelefono.equals("MOVIL") || tipoTelefono.equals("FIJO") || tipoTelefono.equals("TRABAJO")) {
             return true;
@@ -443,6 +589,11 @@ public class CRUD {
         }
     }
 
+    /**
+     * Método privado que comprueba si el tipo de correo electrónico es válido.
+     * @param tipoCorreo Tipo de correo a comoprobar.
+     * @return Verdadero si es un tipo válido, falso si no lo es.
+     */
     private boolean comprobaTipoCorreo(String tipoCorreo) {
         if(tipoCorreo.equals("PERSONAL") || tipoCorreo.equals("EMPRESA") || tipoCorreo.equals("TRABAJO")) {
             return true;
@@ -451,6 +602,13 @@ public class CRUD {
         }
     }
 
+    /**
+     * Método privado que obtiene una fecha de nacimiento usando "LocalDate", a través de tres números enteros (día, mes y año).
+     * @param dia Día de la fecha.
+     * @param mes Mes de la fecha.
+     * @param anyo Año de la fecha.
+     * @return Devuelve un objeto de la clase LocalDate, con el formato que le hayamos dado.
+     */
     private LocalDate darFormatoFecha(int dia, int mes, int anyo) {
         String diaFormateado = String.format("%02d", dia);
         String mesFormateado = String.format("%02d", mes);
@@ -460,6 +618,10 @@ public class CRUD {
         return fechaNacimiento;
     }
 
+    /**
+     * Método privado que sirve para imprimir la información del contacto que se le pase por parámetros.
+     * @param contacto Contacto que se quiera imprimir su información.
+     */
     private void imprimirContacto(Contacto contacto) {
         System.out.print(contacto.getId() + " || " + contacto.getNombre() + " " + contacto.getApellidos() + " || " + contacto.getNotas() + " || " + contacto.getFechaNacimiento().toString() + " || ");
         int i = 1;
@@ -484,6 +646,9 @@ public class CRUD {
         System.out.println("");
     }
 
+    /**
+     * Método privado que tiene la capacidad de permitir un filtrado por campos de la información del contacto, mediante lo que el usuario indique.
+     */
     private void verFiltrado() {
         ArrayList<Contacto> contactos = getListaContactos();
         String filtrado;
@@ -571,6 +736,14 @@ public class CRUD {
         
     }
 
+    // </editor-fold>
+    
+    // <editor-fold defaultstate="collapsed" desc="Métodos públicos">
+    /**
+     * Método público que sirve para iniciar el CRUD. Primero, lee los datos de los ficheros de texto "contactos.txt" y "contactosEliminados.txt", y luego muestra las
+     * opciones posibles de este CRUD al usuario. Se pueden hacer todas las operaciones que se quiera, hasta que se indique explícitamente la opción de "Salir".
+     * @param opcion
+     */
     public void iniciar(int opcion) {
         if (contador == 0) {
             setNombreArchivo("contactos.txt");
@@ -612,4 +785,5 @@ public class CRUD {
         }
         setContador(getContador() + 1);
     }
+    // </editor-fold>
 }
