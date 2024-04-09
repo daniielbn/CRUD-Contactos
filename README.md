@@ -33,11 +33,11 @@ git clone https://github.com/tu_usuario/contact-manager.git```
 
 2. Compila el programa:
 
-```javac *.java```
+`javac *.java`
 
 3. Ejecuta el programa:
 
-```java contacto.Main```
+`java contacto.Main`
 
 ## Uso
 
