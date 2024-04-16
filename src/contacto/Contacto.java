@@ -179,7 +179,7 @@ public class Contacto {
      */
     public Contacto(int id, String nombre, String apellidos, String notas, LocalDate fechaNacimiento, ArrayList<Telefono> telefonos, ArrayList<Correo> correos) {
         this.id = id;
-        ++count;
+        count++;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.notas = notas;
@@ -198,7 +198,7 @@ public class Contacto {
      * @param correos ArrayList de correos electrónicos del contacto.
      */
     public Contacto(String nombre, String apellidos, String notas, LocalDate fechaNacimiento, ArrayList<Telefono> telefonos, ArrayList<Correo> correos) {
-        this.id = ++count;
+        this.id = count++;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.notas = notas;

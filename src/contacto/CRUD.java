@@ -655,14 +655,14 @@ public class CRUD {
         ArrayList<Contacto> contactos = getListaContactos();
         String filtrado;
         do {
-            System.out.println("Por favor, elija el campo por el que quiere filtrar [Nombre, Apellidos, Notas, Fecha de Nacimiento, Telefono, Correo , Salir]: ");
+            System.out.println("Por favor, elija el campo por el que quiere filtrar [Nombre, Apellidos, Notas, Fecha, Telefono, Correo , Salir]: ");
             filtrado = pedirString();
             switch (filtrado.trim().toLowerCase()) {
                 case "nombre":
                 System.out.println("Introduce el nombre: ");
                 String nombre = pedirString();
                     for (Contacto contacto : contactos) {
-                        if (contacto.getNombre().toLowerCase().equals(nombre.toLowerCase())) {
+                        if (contacto.getNombre().toLowerCase().contains(nombre.toLowerCase())) {
                             imprimirContacto(contacto);
                         }
                     }
@@ -670,15 +670,9 @@ public class CRUD {
                 case "apellidos":
                     System.out.println("Introduce el apellido: ");
                     String apellido = pedirString();
-                    String[] apellidos = apellido.split(" ");
                     for (Contacto contacto : contactos) {
-                        String[] apellidosContacto = contacto.getApellidos().split(" ");
-                        for (int i = 0; i < apellidosContacto.length; i++) {
-                            for(int j = 0; j < apellidos.length; j++) {
-                                if (apellidosContacto[i].toLowerCase().equals(apellidos[j].toLowerCase())) {
-                                    imprimirContacto(contacto);
-                                }
-                            }
+                        if (contacto.getApellidos().toLowerCase().contains(apellido.toLowerCase())) {
+                            imprimirContacto(contacto);
                         }
                     }
                     break;
@@ -686,23 +680,44 @@ public class CRUD {
                     System.out.println("Introduce la nota: ");
                     String notas = pedirString();
                     for (Contacto contacto : contactos) {
-                        if (contacto.getNotas().toLowerCase().equals(notas.toLowerCase())) {
+                        if (contacto.getNotas().toLowerCase().contains(notas.toLowerCase())) {
                             imprimirContacto(contacto);
                         }
                     }
                     break;
-                case "fechadenacimiento":
-                    System.out.println("Introduce el dia (1-31): ");
-                    int dia = pedirInt();
-                    System.out.println("Introduce el mes (1-12): ");
-                    int mes = pedirInt();
-                    System.out.println("Introduce el año (1900-2024): ");
-                    int anyo = pedirInt();
-                    LocalDate fecha = darFormatoFecha(dia, mes, anyo);
-                    for (Contacto contacto : contactos) {
-                        if (contacto.getFechaNacimiento().isEqual(fecha)) {
-                            imprimirContacto(contacto);
-                        }
+                case "fecha":
+                    System.out.println("Introduce por que campo quieres filtrar (Dia, Mes o Anyo):");
+                    String campo = pedirString();
+                    switch (campo) {
+                        case "dia":
+                            System.out.println("Introduce el dia (1-31): ");
+                            int dia = pedirInt();
+                            for (Contacto contacto : contactos) {
+                                if(dia == contacto.getFechaNacimiento().getDayOfMonth()) {
+                                    imprimirContacto(contacto);
+                                }
+                            }
+                            break;
+                        case "mes":
+                            System.out.println("Introduce el dia (1-31): ");
+                            int mes = pedirInt();
+                            for (Contacto contacto : contactos) {
+                                if(mes == contacto.getFechaNacimiento().getMonthValue()) {
+                                    imprimirContacto(contacto);
+                                }
+                            }
+                            break;
+                        case "anyo":
+                            System.out.println("Introduce el dia (1-31): ");
+                            int anyo = pedirInt();
+                            for (Contacto contacto : contactos) {
+                                if(anyo == contacto.getFechaNacimiento().getYear()) {
+                                    imprimirContacto(contacto);
+                                }
+                            }
+                            break;
+                        default:
+                            break;
                     }
                     break;
                 case "telefono":
@@ -710,7 +725,7 @@ public class CRUD {
                     String numero = pedirString();
                     for (Contacto contacto : contactos) {
                         for (Telefono telefono : contacto.getTelefonos()) {
-                            if (telefono.getNumero().equals(numero)) {
+                            if (telefono.getNumero().contains(numero)) {
                                 imprimirContacto(contacto);
                             }
                         }
@@ -721,7 +736,7 @@ public class CRUD {
                     String direccion = pedirString();
                     for (Contacto contacto : contactos) {
                         for (Correo correo : contacto.getCorreos()) {
-                            if (correo.getDireccion().equals(direccion)) {
+                            if (correo.getDireccion().contains(direccion)) {
                                 imprimirContacto(contacto);
                             }
                         }
@@ -733,6 +748,10 @@ public class CRUD {
                 default:
                     System.out.println("Ha introducido un campo erróneo. Por favor, vuelva a introducir un campo válido: ");
                     break;
+            }
+            System.out.println("===================================================================================================================================");
+            for (Contacto contacto : contactos) {
+                imprimirContacto(contacto);
             }
         } while (!filtrado.toLowerCase().equals("salir"));
         

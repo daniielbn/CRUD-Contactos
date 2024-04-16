@@ -2,3 +2,7 @@
 2||Jose||Garcia Ascanio||JEFE||1967-05-06||680569386-TRABAJO||ascaniogrcx@fedex.com-EMPRESA
 3||Jose||Gutierrez Hernandez||JEFE||1967-06-25||620759468-TRABAJO||josegrezhdez@hotmail.es-PERSONAL, josegrezhdez@msf.es-TRABAJO
 4||Andres||Gomez Blanco||TIO||1990-05-25||922928759-FIJO||andxgomex@gmail.com-TRABAJO
+5||Isabel||Martinez Sanchez||Gestora||1978-11-30||668458027-MOVIL, 657453757-TRABAJO||isabgetbbva@bbva.es-TRABAJO
+6||Carmen||Lopez Martin||Abuela||1947-02-09||685996435-MOVIL, 922869469-TRABAJO||carmenlayaya@hotmail.com-PERSONAL
+7||David||Ortiz Hernandez||Abuelo||1940-09-17||625742535-MOVIL||dvdortix@gmail.com-PERSONAL, dvdortix@carglass.es-TRABAJO
+8||Joaquin||Suárez Castillo||Primo||1999-05-20||689479759-MOVIL, 647478283-TRABAJO||joaquinsuarezcastillo@gmail.com-PERSONAL
